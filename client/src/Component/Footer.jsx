@@ -5,11 +5,11 @@ import { FaLinkedin } from "react-icons/fa";
 const Footer = () => {
   return (
     <>
-      <div className=" lg:grid grid-cols-[2fr_1fr_1fr] container mx-auto w-full bg-blue-600 lg:py-12 lg:px-24 text-white mb-0">
+      <div className=" lg:grid grid-cols-[2fr_1fr_1fr] w-full bg-blue-600 lg:py-12 lg:px-24 text-white mb-0">
         <div className=" mr-24">
           <div className=" w-[100px] mb-4">
             <img
-              src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png"
+              src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954    218.png"
               alt="logo"
             />
           </div>

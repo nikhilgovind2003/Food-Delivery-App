@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import { StoreContext } from "../context/StoreContext";
 import { RxCross1 } from "react-icons/rx";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cartItems, food_list, removeFromCart, getAmountCart } =
     useContext(StoreContext);
+  const navigate = useNavigate();
+  
   return (
     <div className=" w-full lg:w-[80%] lg:mt-44 mx-auto">
       <div className=" mb-6">
@@ -55,16 +58,16 @@ const Cart = () => {
             <hr />
             <div className=" my-2 flex items-center justify-between">
               <p>Delivery Fee</p>
-              <p>${20}</p>
+              <p>${ getAmountCart() === 0? 0:2}</p>
             </div>
             <hr />
             <div className=" my-2 flex items-center justify-between">
               <p>Total</p>
-              <p>${getAmountCart() + 20}</p>
+              <p>${getAmountCart()==0? 0: getAmountCart() + 2}</p>
             </div>
           </div>
           <div className=" flex justify-center lg:block">
-            <button className=" mx-auto bg-red-500 text-center w-1/2 rounded-md mt-2 text-white font-semibold py-2">
+            <button onClick={()=> navigate("/order")} className=" mx-auto bg-red-500 text-center w-1/2 rounded-md mt-2 text-white font-semibold py-2">
               PROCEED TO CHECKOUT
             </button>
           </div>
