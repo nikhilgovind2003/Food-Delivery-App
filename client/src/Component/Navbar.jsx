@@ -8,7 +8,7 @@ const NavbarLg = ({ setShowLogin }) => {
   const { getAmountCart } = useContext(StoreContext);
   const [menu, setMenu] = useState("Menu");
   return (
-    <div className=" flex items-center justify-around p-4 mb-4">
+    <div className=" flex lg:flex items-center justify-between lg:justify-around p-4 mb-4">
       <Link to="/" className=" w-[150px]">
         <img
           className=" w-full h-full"
@@ -20,20 +20,20 @@ const NavbarLg = ({ setShowLogin }) => {
       <ul className="hidden lg:flex lg:items-center lg:justify-center lg:font-semibold lg:text-xl ">
         <li
           onClick={() => setMenu("Home")}
-          className={menu === "Home" ? " border-b-4 border-gray-400 pb-1" : ""}
+          className={menu === "Home" ? " border-b-4 border-gray-400 pb-1 text-red-400" : ""}
         >
           Home
         </li>
         <li
           onClick={() => setMenu("Menu")}
-          className={menu === "Menu" ? " border-b-4 border-gray-400 pb-1" : ""}
+          className={menu === "Menu" ? " border-b-4 border-gray-400 pb-1 text-red-400" : ""}
         >
           Menu
         </li>
         <li
           onClick={() => setMenu("Mobile-App")}
           className={
-            menu === "Mobile-App" ? " border-b-4 border-gray-400 pb-1" : ""
+            menu === "Mobile-App" ? " border-b-4 border-gray-400 pb-1 text-red-400" : ""
           }
         >
           Mobile-App
@@ -41,14 +41,14 @@ const NavbarLg = ({ setShowLogin }) => {
         <li
           onClick={() => setMenu("Contact Us")}
           className={
-            menu === "Contact Us" ? " border-b-4 border-gray-400 pb-1" : ""
+            menu === "Contact Us" ? " border-b-4 border-gray-400 pb-1 text-red-400" : ""
           }
         >
           Conatct Us
         </li>
       </ul>
 
-      <div className=" flex items-center gap-6">
+      <div className=" flex items-center gap-2 lg:gap-6">
         <CiSearch size={30} className=" cursor-pointer" />
         <Link to="/cart" className=" relative">
           <SlBasket size={30} className=" cursor-pointer" />
@@ -60,7 +60,7 @@ const NavbarLg = ({ setShowLogin }) => {
         </Link>
         <Link
           onClick={() => setShowLogin(true)}
-          className=" border-2 rounded-full px-4 hover:bg-orange-50 hover:border-gray-500 active:bg-orange-200 border-black py-2 text-black font-semibold"
+          className=" border-2 w-[90px] lg:w-[100px] text-center rounded-full px-4 hover:bg-orange-50 hover:border-gray-500 active:bg-orange-200 border-black py-2 text-black font-semibold"
         >
           Sign-in
         </Link>

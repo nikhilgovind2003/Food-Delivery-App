@@ -7,7 +7,7 @@ const Login = ({ setShowLogin }) => {
     <div className=" w-full h-full bg-[#00000090] grid z-20 fixed">
       <form
         action=""
-        className=" p-12 lg:p-8 rounded-md lg:place-self-center w-full mx-auto bg-white text-[#808080] lg:w-[max(33vw)] "
+        className=" p-6 lg:p-8 rounded-md lg:place-self-center w-full mx-auto bg-white text-[#808080] lg:w-[max(33vw)] "
       >
         <div className=" flex justify-between mb-4 items-center w-full">
           <h2 className=" text-center w-full text-2xl font-bold text-blue-400">

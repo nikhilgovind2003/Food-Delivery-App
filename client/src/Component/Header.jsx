@@ -1,9 +1,9 @@
 const Header = () => {
 
   return (
-    <div>
+    <div className=" mx-auto container">
       <div
-        className="md:mx-4 mx-auto lg:flex flex-col justify-center object-contain  text-white relative w-full lg:w-[80%] lg:mx-auto h-[500px] rounded-xl p-2 "
+        className="md:mx-4 mx-auto lg:flex flex-col justify-center object-contain text-white relative w-full lg:w-[80%] lg:mx-auto h-[500px] rounded-xl p-2 "
         style={{
           backgroundImage:
             "url(https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png)",
@@ -15,7 +15,7 @@ const Header = () => {
           <h1 className=" flex flex-col gap-8 lg:gap-4 text-6xl font-bold">
             <span>Order your</span> favourite food here
           </h1>
-          <p className="hidden lg:block text-lg mt-2">
+          <p className="hidden mt-24 lg:block text-lg lg:mt-2">
             From swanky upscale restaurants to the cosiest hidden gems serving
             the most incredible food, Zomato covers it all. Explore menus, and
             millions of restaurant photos and reviews from users just like you,

@@ -6,7 +6,7 @@ const PlaceHolder = () => {
   const navigate = useNavigate();
   const { getAmountCart } = useContext(StoreContext);
   return (
-    <div className=" w-full mx-auto lg:w-[80%]">
+    <div className=" w-full container  mx-auto lg:w-[80%]">
       <form className=" flex items-start justify-between gap-[100px] my-24">
         <div className=" w-full max-w-[max(30%, 500px)]">
           {/* delivery information */}

@@ -15,7 +15,7 @@ const Cart = () => {
           <p>Items</p>
           <p>Title</p>
           <p>Price</p>
-          <p>Quantity</p>
+          <p>Qty.</p>
           <p>Total</p>
           <p>Remove</p>
         </div>
@@ -27,11 +27,11 @@ const Cart = () => {
             return (
               <div key={index}>
                 <div className=" md:text-sm grid h-full grid-cols-6  m-2 lg:mx-4">
-                  <img src={item.img} alt="" className=" w-[50px]" />
-                  <p className=" h-full">{item.name}</p>
-                  <p>${item.cash}</p>
-                  <p>{cartItems[item.id]}</p>
-                  <p>{item.cash * cartItems[item.id]}</p>
+                  <img src={item.img} alt="" className=" my-auto w-[50px]" />
+                  <p className=" my-auto h-full">{item.name}</p>
+                  <p className=" my-auto">${item.cash}</p>
+                  <p className=" my-auto">{cartItems[item.id]}</p>
+                  <p className=" my-auto">{item.cash * cartItems[item.id]}</p>
                   <div className=" cursor-pointer w-full flex justify-center text-center"
                     onClick = {() => {
                       removeFromCart(item.id);
