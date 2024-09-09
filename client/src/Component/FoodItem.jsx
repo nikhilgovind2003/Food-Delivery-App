@@ -15,7 +15,7 @@ const FoodItem = ({ id, name, img, product, star, cash, min }) => {
       style={{ animation: "top 1s" }}
     >
       <div className=" relative w-[100%] h-[300px]">
-        <img src={img} className=" w-full rounded-md h-full" alt={name} />
+        <img src={img} className=" w-full rounded-md h-full object-cover" alt={name} />
         <div className=" absolute bottom-3 right-3 ">
           {!cartItems[id] ? (
             <div

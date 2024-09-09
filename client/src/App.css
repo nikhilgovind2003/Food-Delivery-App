@@ -22,7 +22,7 @@
     margin: 0px 1.4rem;
     list-style: none;
   }
-  li:hover{
+li:hover{
     color: red;
     transition: 0.2s ease-in-out;
   }

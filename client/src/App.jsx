@@ -7,7 +7,6 @@ import PlaceHolder from "./Pages/placeHolder";
 import Footer from "./Component/Footer";
 import { useState } from "react";
 import Login from "./Pages/Login";
-import Admin from "./admin/Admin";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -17,7 +16,7 @@ function App() {
       <Navbar setShowLogin={setShowLogin} />
 
       <Routes>
-        <Route path="/" element={<Admin />} />
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/order" element={<PlaceHolder />} />

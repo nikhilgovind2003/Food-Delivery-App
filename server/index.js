@@ -2,6 +2,9 @@ import cors from "cors"
 import express from "express"
 import { dbConnect } from "./config/db.js"
 import foodRouter from "./routes/foodRouter.js"
+import userRouter from "./routes/userRouter.js"
+import dotenv from "dotenv/config"
+
 
 // api configuration
 const app = express()
@@ -17,6 +20,7 @@ dbConnect()
 // api endpoints
 app.use("/api/food", foodRouter)
 app.use("/images", express.static("uploads"))
+app.use("/api/user", userRouter)
 
 app.listen(port, () => {
     console.log(

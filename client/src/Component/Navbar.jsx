@@ -20,31 +20,43 @@ const NavbarLg = ({ setShowLogin }) => {
       <ul className="hidden lg:flex lg:items-center lg:justify-center lg:font-semibold lg:text-xl ">
         <li
           onClick={() => setMenu("Home")}
-          className={menu === "Home" ? " border-b-4 border-gray-400 pb-1 text-red-400" : ""}
+          className={
+            menu === "Home"
+              ? " border-b-4 border-gray-400 pb-1 text-red-400"
+              : ""
+          }
         >
-          Home
+          <Link to="/">Home</Link>
         </li>
         <li
           onClick={() => setMenu("Menu")}
-          className={menu === "Menu" ? " border-b-4 border-gray-400 pb-1 text-red-400" : ""}
+          className={
+            menu === "Menu"
+              ? " border-b-4 border-gray-400 pb-1 text-red-400"
+              : ""
+          }
         >
-          Menu
+          <Link to="/menu">Menu</Link>
         </li>
         <li
           onClick={() => setMenu("Mobile-App")}
           className={
-            menu === "Mobile-App" ? " border-b-4 border-gray-400 pb-1 text-red-400" : ""
+            menu === "Mobile-App"
+              ? " border-b-4 border-gray-400 pb-1 text-red-400"
+              : ""
           }
         >
-          Mobile-App
+          <Link to="mobile-app">Mobile-App</Link>
         </li>
         <li
           onClick={() => setMenu("Contact Us")}
           className={
-            menu === "Contact Us" ? " border-b-4 border-gray-400 pb-1 text-red-400" : ""
+            menu === "Contact Us"
+              ? " border-b-4 border-gray-400 pb-1 text-red-400"
+              : ""
           }
         >
-          Conatct Us
+          <Link to="contact-us">Contact Us</Link>
         </li>
       </ul>
 
