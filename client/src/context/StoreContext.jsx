@@ -3,8 +3,10 @@ import { food_list } from "../Data/Data";
 
 export const StoreContext = createContext(null);
 
-const StoreContextProvider = (props) => {
+const StoreContextProvider = ({children}) => {
   const [cartItems, setcartItems] = useState({});
+  const url = "http://localhost:4000"
+  const [token, setToken] = useState("")
 
   const addToCart = (itemId) => {
     if (!cartItems[itemId]) {
@@ -37,11 +39,14 @@ const StoreContextProvider = (props) => {
     addToCart,
     removeFromCart,
     getAmountCart,
+    url,
+    token,
+    setToken
   };
 
   return (
     <StoreContext.Provider value={contextValue}>
-      {props.children}
+      {children}
     </StoreContext.Provider>
   );
 };

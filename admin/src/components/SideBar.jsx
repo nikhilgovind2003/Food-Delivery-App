@@ -3,7 +3,7 @@ import { assets } from "../admin_assets/assets.js";
 
 const SideBar = () => {
   return (
-    <div className="hidden md:block w-[18%] border-r-2 border-gray-400 h-screen">
+    <div className="hidden md:block w-[18%] border-r-2 border-gray-400 h-screen fixed top-20">
       <div className=" mt-12 ml-12 flex flex-col gap-4">
         <Link to="/add" className=" active:bg-[#fff0ed] active:border-red-400  flex items-center gap-4 border-2 rounded-md border-gray-400 border-r-0 p-2">
           <img src={assets.add_icon} alt="add icons" />

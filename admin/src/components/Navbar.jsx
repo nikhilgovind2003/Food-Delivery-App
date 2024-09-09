@@ -7,7 +7,7 @@ const Navbar = () => {
   const [menuBar, setMenuBar] = useState(false);
   return (
     <>
-      <div className=" flex justify-between items-center p-2 border-b-2 px-8 border-gray-400">
+      <div className=" flex justify-between bg-white items-center p-2 border-b-2 px-8 fixed top-0 z-10 w-full border-gray-400">
         <div className=" w-[150px]">
           <img src={assets.logo} alt="logo" />
         </div>

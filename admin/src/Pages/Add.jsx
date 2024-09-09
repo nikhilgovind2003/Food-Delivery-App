@@ -3,8 +3,7 @@ import { assets } from "../../src/admin_assets/assets.js";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const Add = () => {
-  const url = "http://localhost:4000";
+const Add = ({url}) => {
   // Uploading images
   const [Image, setImage] = useState(false);
 
@@ -60,7 +59,7 @@ const Add = () => {
 
   return (
     <>
-      <form action="" onSubmit={onHandleSubmit} className=" p-16">
+      <form action="" onSubmit={onHandleSubmit} className=" px-16 ml-[18%] mt-24">
         <div className=" flex items-start w-full gap-4 my-4 flex-col">
           <p>Upload Image</p>
           <label htmlFor="file" className=" w-[150px]">

@@ -7,6 +7,9 @@ import { StoreContext } from "../context/StoreContext";
 const NavbarLg = ({ setShowLogin }) => {
   const { getAmountCart } = useContext(StoreContext);
   const [menu, setMenu] = useState("Menu");
+console.log(menu);
+
+
   return (
     <div className=" flex lg:flex items-center justify-between lg:justify-around p-4 mb-4">
       <Link to="/" className=" w-[150px]">
@@ -56,7 +59,7 @@ const NavbarLg = ({ setShowLogin }) => {
               : ""
           }
         >
-          <Link to="contact-us">Contact Us</Link>
+          <Link to="/contact-us">Contact Us</Link>
         </li>
       </ul>
 
