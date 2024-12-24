@@ -3,75 +3,90 @@ import { assets } from "../../src/admin_assets/assets.js";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const Add = ({url}) => {
-  // Uploading images
-  const [Image, setImage] = useState(false);
+const Add = ({ url }) => {
+  const [Image, setImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(assets.upload_area); // Default preview image
+  
 
-  // Uploading all details into an object
   const [data, setData] = useState({
     name: "",
     description: "",
     price: "",
     category: "Rolls",
+    image: ""
   });
 
-  // Fn to upload details from input to object
+  // Update form data for text fields
   const onhashchange = (e) => {
-    // storing name and value into abject
     const name = e.target.name;
     const value = e.target.value;
-
-    // setting new data into prev value
     setData((data) => ({ ...data, [name]: value }));
   };
 
-  // Rendering the data
-  useEffect(() => {
-    // console.log(data);
-  }, [data]);
+  // Use FileReader to handle the image preview
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file); // Set the file for upload
 
-  //
+    // Use FileReader to create a base64 preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreviewImage(reader.result); // Set preview image as base64
+    };
+    if (file) {
+      reader.readAsDataURL(file); // Trigger onloadend
+    }
+  };
+
+  // Submit form data
   const onHandleSubmit = async (e) => {
     e.preventDefault();
+
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("description", data.description);
     formData.append("price", Number(data.price));
     formData.append("category", data.category);
-    formData.append("image", Image);
+    formData.append("image", Image); // Append file for server upload
 
-    // axios
-    const res = await axios.post(`${url}/api/food/add`, formData);
-    console.log(res.data);
-    if (res.data.success) {
-      setData({
-        name: "",
-        description: "",
-        price: "",
-        category: "Rolls",
-      }),
-        setImage(false);
-      toast.success(res.data.message);
-    } else {
-      console.log(res.data.message);
+    try {
+      const res = await axios.post(`${url}/api/food/add`, formData);
+      console.log(res.data);
+      if (res.data.success) {
+        setData({
+          name: "",
+          description: "",
+          price: "",
+          category: "Rolls",
+          image: ""
+        });
+        setImage(null);
+        setPreviewImage(assets.upload_area); // Reset preview image
+        toast.success(res.data.message);
+      } else {
+        console.log(res.data.message);
+      }
+    } catch (error) {
+      console.error("Error uploading data:", error);
+      toast.error("Failed to upload data.");
     }
   };
 
   return (
     <>
-      <form action="" onSubmit={onHandleSubmit} className=" px-16 ml-[18%] mt-24">
-        <div className=" flex items-start w-full gap-4 my-4 flex-col">
+      <form onSubmit={onHandleSubmit} className="px-16 ml-[18%] mt-24">
+        <div className="flex items-start w-full gap-4 my-4 flex-col">
           <p>Upload Image</p>
-          <label htmlFor="file" className=" w-[150px]">
+          <label htmlFor="file" className="w-[150px]">
             <img
-              className=" w-full h-full"
-              src={Image ? URL.createObjectURL(Image) : assets.upload_area}
-              alt=""
+              className="w-full h-full"
+              src={previewImage} // Display preview image
+              alt="Preview"
             />
           </label>
           <input
-            onChange={(e) => setImage(e.target.files[0])}
-            className=" p-2 rounded-xs w-full"
+            onChange={handleImageChange}
+            className="p-2 rounded-xs w-full"
             hidden
             type="file"
             name="file"
@@ -79,24 +94,24 @@ const Add = ({url}) => {
             required
           />
         </div>
-        <div className=" flex items-start w-full gap-4 my-4 flex-col">
+        <div className="flex items-start w-full gap-4 my-4 flex-col">
           <label htmlFor="name">Product Name</label>
           <input
             onChange={onhashchange}
             value={data.name}
-            className=" p-2 rounded-xs w-full"
+            className="p-2 rounded-xs w-full"
             type="text"
-            placeholder="TYpe here"
+            placeholder="Type here"
             name="name"
             required
           />
         </div>
-        <div className=" flex items-start w-full gap-4 my-4 flex-col">
+        <div className="flex items-start w-full gap-4 my-4 flex-col">
           <label htmlFor="description">Product Description</label>
           <textarea
             onChange={onhashchange}
             value={data.description}
-            className=" p-2 rounded-xs w-full"
+            className="p-2 rounded-xs w-full"
             rows="6"
             placeholder="Write the content here"
             required
@@ -104,15 +119,15 @@ const Add = ({url}) => {
             id="description"
           ></textarea>
         </div>
-
-        <div className=" flex justify-center items-center w-full gap-4 my-4">
-          <div className=" flex items-start w-full gap-4 my-4 flex-col">
+        <div className="flex justify-center items-center w-full gap-4 my-4">
+          <div className="flex items-start w-full gap-4 my-4 flex-col">
             <label htmlFor="category">Product Category</label>
             <select
-              className=" p-2 rounded-xs w-full"
+              className="p-2 rounded-xs w-full"
               name="category"
               id="category"
               onChange={onhashchange}
+              value={data.category}
             >
               <option value="Salad">Salad</option>
               <option value="Rolls">Rolls</option>
@@ -124,14 +139,13 @@ const Add = ({url}) => {
               <option value="Noodles">Noodles</option>
             </select>
           </div>
-
-          <div className=" flex items-start w-full gap-4 my-4 flex-col">
+          <div className="flex items-start w-full gap-4 my-4 flex-col">
             <label htmlFor="price">Product Price</label>
             <input
               onChange={onhashchange}
               value={data.price}
-              className=" p-2 rounded-xs w-full"
-              type="Number"
+              className="p-2 rounded-xs w-full"
+              type="number"
               min="0"
               required
               name="price"
@@ -139,7 +153,6 @@ const Add = ({url}) => {
             />
           </div>
         </div>
-
         <input
           type="submit"
           value="ADD"

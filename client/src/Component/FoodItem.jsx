@@ -4,10 +4,10 @@ import { IoIosRemove } from "react-icons/io";
 import { FaStar } from "react-icons/fa";
 import { StoreContext } from "../context/StoreContext";
 
-const FoodItem = ({ id, name, img, product, star, cash, min }) => {
-
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
-
+const FoodItem = ({ id, name, img, product, star, cash,desc }) => {
+  
+  const { cartItems, addToCart, removeFromCart, url } =
+  useContext(StoreContext);
   return (
     <div
       key={id}
@@ -15,7 +15,11 @@ const FoodItem = ({ id, name, img, product, star, cash, min }) => {
       style={{ animation: "top 1s" }}
     >
       <div className=" relative w-[100%] h-[300px]">
-        <img src={img} className=" w-full rounded-md h-full object-cover" alt={name} />
+        <img
+          src={url + "/images/" + img}
+          className=" w-full rounded-md h-full object-cover"
+          alt={name}
+        />
         <div className=" absolute bottom-3 right-3 ">
           {!cartItems[id] ? (
             <div
@@ -38,22 +42,20 @@ const FoodItem = ({ id, name, img, product, star, cash, min }) => {
               </div>
             </div>
           )}
-      </div>
+        </div>
       </div>
       <div className=" flex flex-col gap-2 mt-4">
         <div className=" flex items-center justify-between w-full">
-          <p>{name}</p>
-          <span className=" bg-green-500 gap-1 flex items-center text-white rounded-md px-2">
+          <p className=" text-xl font-bold">{name}</p>
+          <span className=" bg-green-500 gap-1 flex items-center text-white rounded-md px-4 py-[4px]">
             {star} <FaStar />
           </span>
         </div>
-        <div className=" flex items-center justify-between w-full">
+        <div className=" flex items-center justify-start w-full">
           <p>{product}</p>
           <span>{cash}$ only for one</span>
         </div>
-        <div>
-          <p className=" w-full text-end">{min} min</p>
-        </div>
+          <p className=" w-full">{desc}</p>
       </div>
     </div>
   );

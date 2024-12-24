@@ -7,6 +7,9 @@ const Login = ({ setShowLogin }) => {
   const { url, setToken } = useContext(StoreContext);
 
   const [currentState, setcurrentState] = useState("Sign-Up");
+
+
+
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -22,8 +25,9 @@ const Login = ({ setShowLogin }) => {
   const onLogin = async (event) => {
     event.preventDefault();
     let newUrl = url;
-    if (currentState === "login") {
+    if (currentState === "Login") {
       newUrl += "/api/user/login";
+      
     } else {
       newUrl += "/api/user/register";
     }
@@ -31,9 +35,9 @@ const Login = ({ setShowLogin }) => {
     const response = await axios.post(newUrl, data);
 
   if (response.data.success) {
-      setToken(response.data.token);
-      localStorage.setItem("token", response.data.token);
-      setShowLogin(false);
+      setToken(response.data.token);    // save the  token
+      localStorage.setItem("token", response.data.token);    // save the token in localstorage
+      setShowLogin(false);    // login popup hidden
     } else {
       alert(response.data.message);
     }

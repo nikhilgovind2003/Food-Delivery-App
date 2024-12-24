@@ -4,6 +4,7 @@ import { dbConnect } from "./config/db.js"
 import foodRouter from "./routes/foodRouter.js"
 import userRouter from "./routes/userRouter.js"
 import dotenv from "dotenv/config"
+import cartRouter from "./routes/cartRouter.js"
 
 
 // api configuration
@@ -21,6 +22,7 @@ dbConnect()
 app.use("/api/food", foodRouter)
 app.use("/images", express.static("uploads"))
 app.use("/api/user", userRouter)
+app.use("/api/cart", cartRouter)
 
 app.listen(port, () => {
     console.log(

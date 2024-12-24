@@ -4,10 +4,10 @@ import { RxCross1 } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart, getAmountCart } =
+  const { cartItems, food_list, removeFromCart, url, getAmountCart } =
     useContext(StoreContext);
   const navigate = useNavigate();
-  
+
   return (
     <div className=" w-full lg:w-[80%] lg:mt-44 mx-auto">
       <div className=" mb-6">
@@ -27,16 +27,21 @@ const Cart = () => {
             return (
               <div key={index}>
                 <div className=" md:text-sm grid h-full grid-cols-6  m-2 lg:mx-4">
-                  <img src={item.img} alt="" className=" my-auto w-[50px]" />
+                  <img
+                    src={url + "/images/" + item.img}
+                    alt=""
+                    className=" my-auto w-[50px]"
+                  />
                   <p className=" my-auto h-full">{item.name}</p>
-                  <p className=" my-auto">${item.cash}</p>
+                  <p className=" my-auto">${item.price}</p>
                   <p className=" my-auto">{cartItems[item.id]}</p>
                   <p className=" my-auto">{item.cash * cartItems[item.id]}</p>
-                  <div className=" cursor-pointer w-full flex justify-center text-center"
-                    onClick = {() => {
+                  <div
+                    className=" cursor-pointer w-full flex justify-center text-center"
+                    onClick={() => {
                       removeFromCart(item.id);
                     }}
-                    >
+                  >
                     <RxCross1 className=" h-full cursor-pointer" />
                   </div>
                 </div>
@@ -58,16 +63,19 @@ const Cart = () => {
             <hr />
             <div className=" my-2 flex items-center justify-between">
               <p>Delivery Fee</p>
-              <p>${ getAmountCart() === 0? 0:2}</p>
+              <p>${getAmountCart() === 0 ? 0 : 2}</p>
             </div>
             <hr />
             <div className=" my-2 flex items-center justify-between">
               <p>Total</p>
-              <p>${getAmountCart()==0? 0: getAmountCart() + 2}</p>
+              <p>${getAmountCart() == 0 ? 0 : getAmountCart() + 2}</p>
             </div>
           </div>
           <div className=" flex justify-center lg:block">
-            <button onClick={()=> navigate("/order")} className=" mx-auto bg-red-500 text-center w-1/2 rounded-md mt-2 text-white font-semibold py-2">
+            <button
+              onClick={() => navigate("/order")}
+              className=" mx-auto bg-red-500 text-center w-1/2 rounded-md mt-2 text-white font-semibold py-2"
+            >
               PROCEED TO CHECKOUT
             </button>
           </div>
@@ -78,7 +86,6 @@ const Cart = () => {
             <input
               type="text"
               className="w-full h-8 bg-white text-[#808080] px-4"
-            
               placeholder="Promocode"
             />
             <input

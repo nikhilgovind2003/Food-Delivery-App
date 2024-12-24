@@ -1,14 +1,21 @@
 import { useContext, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { SlBasket } from "react-icons/sl";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../context/StoreContext";
-
+import OrderIcon from "../frontend_assets/bag_icon.png"
+import LogoutIcon from "../frontend_assets/logout_icon.png"
+import ProfileIcon from "../frontend_assets/profile_icon.png"
 const NavbarLg = ({ setShowLogin }) => {
-  const { getAmountCart } = useContext(StoreContext);
+  const { getAmountCart, token, setToken } = useContext(StoreContext);
   const [menu, setMenu] = useState("Menu");
-console.log(menu);
 
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("token")
+    setToken("")
+    navigate("/home")
+  }
 
   return (
     <div className=" flex lg:flex items-center justify-between lg:justify-around p-4 mb-4">
@@ -73,12 +80,30 @@ console.log(menu);
             <div className=" absolute w-[10px] rounded-full h-[10px] top-[-2px] right-[-5px] bg-red-500"></div>
           )}
         </Link>
-        <Link
-          onClick={() => setShowLogin(true)}
-          className=" border-2 w-[90px] lg:w-[100px] text-center rounded-full px-4 hover:bg-orange-50 hover:border-gray-500 active:bg-orange-200 border-black py-2 text-black font-semibold"
-        >
-          Sign-in
-        </Link>
+
+        {!token ? (
+          <Link
+            onClick={() => setShowLogin(true)}
+            className=" border-2 w-[90px] lg:w-[100px] text-center rounded-full px-4 hover:bg-orange-50 hover:border-gray-500 active:bg-orange-200 border-black py-2 text-black font-semibold"
+          >
+            Sign-in
+          </Link>
+        ) : (
+            <div className="relative group border-red-500">
+              <img src={ProfileIcon} alt="" />
+              <ul className="absolute top-full right-0 z-10 mt-2 w-40 p-2 bg-gray-100 text-gray-800 opacity-0 group-hover:opacity-100 flex flex-col gap-2 justify-center items-center group-hover:translate-y-0 transform transition-opacity duration-200 ease-in-out -translate-y-2">
+                <li className=" flex items-center gap-4 hover:text-red-400">
+                <img src={OrderIcon} className="w-8" alt="" />
+                <p>Order</p>
+                </li>
+                <hr className=" h-1 w-full" />
+                <li onClick={logout} className=" flex items-center gap-4 hover:text-red-400">
+                  <img src={LogoutIcon} className="w-8" alt="" />
+                  <p>Logout</p>
+                </li>
+              </ul>
+          </div>
+        )}
       </div>
     </div>
   );
